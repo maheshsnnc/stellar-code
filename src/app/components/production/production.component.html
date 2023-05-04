@@ -1,0 +1,37 @@
+<div class="container-fluid min-vh-100 mt-3">
+    <div class="row">
+        <h6>Historical Trend (Last 12 Month):</h6>
+        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="chartData">
+        </ngx-charts-line-chart>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row mt-3">
+        <h6>Tabular data:</h6>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <!-- Position Column -->
+                <ng-container matColumnDef="month">
+                    <th mat-header-cell *matHeaderCellDef> Month </th>
+                    <td mat-cell *matCellDef="let element"> {{element.monthName}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="poa">
+                    <th mat-header-cell *matHeaderCellDef> POA Monthly </th>
+                    <td mat-cell *matCellDef="let element"> {{element.poaMonthly}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="ac">
+                    <th mat-header-cell *matHeaderCellDef> AC Monthly </th>
+                    <td mat-cell *matCellDef="let element"> {{element.acMonthly}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

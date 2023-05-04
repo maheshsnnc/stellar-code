@@ -1,0 +1,78 @@
+<div class="container-fluid min-vh-100 mt-3">
+    <div class="row">
+        <div class="col-sm-6">
+            <h6>Site Information:</h6>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Site Name:</label>
+                <label class="col-sm-8 col-form-label">{{site?.name}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Site ID:</label>
+                <label class="col-sm-8 col-form-label">{{site?.id}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Latitude:</label>
+                <label class="col-sm-8 col-form-label">{{site?.latitude}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Longitude:</label>
+                <label class="col-sm-8 col-form-label">{{site?.longitude}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">City:</label>
+                <label class="col-sm-8 col-form-label">{{site?.city}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">State:</label>
+                <label class="col-sm-8 col-form-label">{{site?.state}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">System Capacity:</label>
+                <label class="col-sm-8 col-form-label">{{site?.systemCapacity}}</label>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Time offset:</label>
+                <label class="col-sm-8 col-form-label">{{site?.timeOffset}}</label>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h6>Live Data:</h6>
+            <div class="row mt-3">
+                <mat-icon class="col-sm-4 col-form-icon">wb_sunny</mat-icon>
+                <label class="col-sm-8 col-form-label">0</label>
+            </div>
+            <div class="row mt-3">
+                <mat-icon class="col-sm-4 col-form-icon">thermostat</mat-icon>
+                <label class="col-sm-8 col-form-label">{{currentWeather?.main.temp}} deg C</label>
+            </div>
+            <div class="row mt-3">
+                <mat-icon class="col-sm-4 col-form-icon">toys</mat-icon>
+                <label class="col-sm-8 col-form-label">{{currentWeather?.wind.speed}} meter/sec</label>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row mt-3">
+        <div class="row">
+            <div class="col-3">
+                <h6>Historical Trend (Last 7 days):</h6>
+            </div>
+            <div class="col">
+                <mat-form-field class="w-25" appearance="fill">
+                    <mat-label>Parameter</mat-label>
+                    <mat-select (selectionChange)="onSelectionChange($event)" [(ngModel)]="selectedParameter">
+                        <mat-option *ngFor="let eachParameter of parameterList" [value]="eachParameter">
+                            {{eachParameter}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="chartData">
+        </ngx-charts-line-chart>
+
+    </div>
+</div>

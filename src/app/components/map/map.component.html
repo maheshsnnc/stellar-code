@@ -1,0 +1,12 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <google-map height="500px" width="1100px" [center]="center" [zoom]="zoom" (tilesloaded)="onMapTilesLoaded()">
+      <map-marker #marker="mapMarker" *ngFor="let eachMarker of markers" [position]="eachMarker.position"
+        [label]="eachMarker.label" [options]="eachMarker.markerOptions"
+        (mapMouseover)="onMarkerMouseOver(eachMarker, marker)"
+        (mapMouseout)="onMarkerMouseOut(eachMarker)"></map-marker>
+      <map-info-window [options]="infoWindowOptions">
+      </map-info-window>
+    </google-map>
+  </div>
+</div>
